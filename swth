@@ -369,10 +369,10 @@ _install_completion() {
   fi
 
   # Start looking for user's bash completion directory
-  if [ ! -z $BASH_COMPLETION_USER_DIR ]; then
+  if [ -n $BASH_COMPLETION_USER_DIR ]; then
     mkdir -p "$BASH_COMPLETION_USER_DIR/completions"
     COMPLETE_USER_INSTALL_DIR="$BASH_COMPLETION_USER_DIR/completions"
-  elif [ ! -z $XDG_DATA_HOME ]; then
+  elif [ -n $XDG_DATA_HOME ]; then
     mkdir -p "$XDG_DATA_HOME/bash-completion/completions"
     COMPLETE_USER_INSTALL_DIR="$XDG_DATA_HOME/bash-completion/completions"
   else
@@ -381,7 +381,7 @@ _install_completion() {
   fi
 
   # Install the completion script
-  if [ ! -z "$COMPLETE_USER_INSTALL_DIR" ]; then
+  if [ -n "$COMPLETE_USER_INSTALL_DIR" ]; then
     if [ ! -w "$COMPLETE_USER_INSTALL_DIR" ]; then
       printf "\n$COMPLETE_USER_INSTALL_DIR is not writable, continue as root (sudo)? [NO|yes] "
       EOLD=$E
